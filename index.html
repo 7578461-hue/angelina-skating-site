@@ -6,175 +6,236 @@
 <title>Школа фигурного катания Ангелины Кальницкой</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#16365c;
-    --navy-2:#0f2a4a;
-    --ink:#2c3e53;
-    --gray:#6e7f90;
-    --line:#d3dee8;
-    --bg:#fbfdff;
-    --ice:#eef5fa;
+    --bg:#0a1626;
+    --bg-2:#0e1d31;
+    --bg-3:#122340;
+    --white:#ffffff;
+    --text:rgba(255,255,255,.86);
+    --muted:#8fa3b8;
+    --ice:#9fd3ff;
+    --line:rgba(255,255,255,.16);
+    --glass:rgba(255,255,255,.06);
     --serif:'Cormorant Garamond',Georgia,serif;
     --sans:'Manrope',-apple-system,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
-  h1,h2,h3{font-family:var(--serif);font-weight:600;color:var(--navy);line-height:1.18;letter-spacing:.005em}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;color:#fff;line-height:1.12;letter-spacing:.005em}
   a{text-decoration:none;color:inherit}
-  .wrap{max-width:1140px;margin:0 auto;padding:0 28px}
-
-  /* watermark snowflakes */
-  .wm{position:absolute;color:#dcebf5;pointer-events:none;z-index:0}
-  .wm svg{width:100%;height:100%}
-
-  /* go-link: текст + круглая стрелка */
-  .go{display:inline-flex;align-items:center;gap:14px;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--navy);transition:.25s}
-  .go .c{width:38px;height:38px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;transition:.25s;flex:0 0 auto}
-  .go:hover .c{transform:translateX(5px);background:var(--navy-2)}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  .kick{display:inline-flex;align-items:center;gap:12px;font-size:12.5px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--ice)}
+  .kick::before{content:"";width:34px;height:1.5px;background:var(--ice)}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 34px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;border:none;transition:.3s;font-family:var(--sans)}
+  .btn-white{background:#fff;color:#0a1a2c}
+  .btn-white:hover{transform:translateY(-3px);box-shadow:0 20px 44px -16px rgba(0,0,0,.7)}
+  .btn-glass{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.4);color:#fff;backdrop-filter:blur(6px)}
+  .btn-glass:hover{background:#fff;color:#0a1a2c}
 
   /* HEADER */
-  header{position:relative;z-index:5}
-  .nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
-  .logo{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--navy);line-height:1.2}
-  .logo small{display:block;font-family:var(--sans);font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--gray);font-weight:600}
-  .nav-links{display:flex;gap:34px}
-  .nav-links a{font-size:13.5px;font-weight:600;color:var(--gray);transition:.2s;letter-spacing:.04em}
-  .nav-links a:hover{color:var(--navy)}
-  .burger{display:none;background:none;border:none;color:var(--navy);font-size:24px;cursor:pointer}
-
-  section{position:relative;z-index:1}
-  .pad{padding:90px 0}
+  header{position:fixed;top:0;left:0;right:0;z-index:50;transition:.35s}
+  header.scrolled{background:rgba(8,17,30,.85);backdrop-filter:blur(14px);box-shadow:0 8px 40px -20px rgba(0,0,0,.8)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+  .logo{font-family:var(--serif);font-size:21px;font-weight:600;color:#fff;line-height:1.2}
+  .logo small{display:block;font-family:var(--sans);font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:600}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{font-size:14px;font-weight:600;color:rgba(255,255,255,.75);transition:.2s;white-space:nowrap}
+  .nav-links a:hover{color:#fff}
+  .nav-links .btn{padding:12px 26px;font-size:14px}
+  .burger{display:none;background:none;border:none;color:#fff;font-size:25px;cursor:pointer}
 
   /* HERO */
-  .hero .grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:50px 0 90px}
-  .hero h1{font-size:clamp(36px,4.6vw,56px)}
-  .hero p.sub{font-size:15px;color:var(--gray);max-width:380px;margin:24px 0 38px}
-  .hero .photo{justify-self:center;width:min(460px,100%);height:520px;border-radius:18px;background:url("img/hero-girl.jpg") center 25%/cover no-repeat;box-shadow:0 30px 70px -40px rgba(22,54,92,.45);position:relative}
-  .hero .photo .cap{position:absolute;left:18px;bottom:18px;background:#fff;border-radius:10px;padding:10px 16px;font-size:12px;font-weight:700;color:var(--navy);letter-spacing:.04em;box-shadow:0 12px 30px -14px rgba(22,54,92,.4)}
-  .hero .stats{display:flex;gap:38px;margin-top:46px;flex-wrap:wrap}
-  .hero .stats b{font-family:var(--serif);font-size:32px;color:var(--navy);font-weight:700;display:block;line-height:1.1}
-  .hero .stats span{font-size:12px;color:var(--gray);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;
+    background:linear-gradient(180deg,rgba(7,16,28,.5),rgba(7,16,28,.55) 55%,rgba(10,22,38,.96)),url("img/student-3.jpg") center/cover no-repeat}
+  .hero .body{padding:140px 0 80px;max-width:900px}
+  .hero h1{font-size:clamp(44px,6.4vw,88px);line-height:1.02;text-shadow:0 4px 44px rgba(0,0,0,.5)}
+  .hero h1 em{font-style:italic;color:var(--ice)}
+  .hero p.lead{font-size:18.5px;color:rgba(255,255,255,.85);max-width:560px;margin:26px 0 38px;font-weight:300}
+  .hero .btns{display:flex;gap:16px;flex-wrap:wrap}
+  .hero .strip{display:flex;margin-top:58px;border-top:1px solid var(--line);flex-wrap:wrap}
+  .hero .strip .s{padding:22px 44px 0 0;margin-right:44px}
+  .hero .strip b{font-family:var(--serif);font-size:34px;font-weight:700;display:block;line-height:1.1;color:#fff}
+  .hero .strip span{font-size:12.5px;color:var(--muted);letter-spacing:.06em}
 
-  /* SEC HEAD */
-  .shead{margin-bottom:46px}
-  .shead h2{font-size:clamp(28px,3.4vw,40px);max-width:520px}
-  .shead.center{text-align:center}
-  .shead.center h2{margin:0 auto}
+  /* SECTION basics */
+  section.block{padding:110px 0;position:relative}
+  .shead{max-width:680px;margin-bottom:56px}
+  .shead h2{font-size:clamp(32px,4.2vw,52px);margin-top:20px}
+  .shead h2 em{font-style:italic;color:var(--ice)}
+  .shead p{color:var(--muted);font-size:16px;margin-top:18px;max-width:560px}
+  .center{text-align:center;margin-left:auto;margin-right:auto}
+  .center .kick{justify-content:center}
+  .center .kick::before{display:none}
+  .center .kick::after{display:none}
 
-  /* STORY */
-  .story .grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
-  .story p{font-size:14.5px;color:var(--gray);max-width:360px}
-  .story .photos{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:54px}
-  .story .ph{height:300px;border-radius:16px;background-size:cover;background-position:center;box-shadow:0 24px 56px -34px rgba(22,54,92,.5)}
-  .story .ph.p1{background-image:url("img/student-1.jpg");margin-top:34px}
-  .story .ph.p2{background-image:url("img/student-3.jpg")}
-  .story .more{display:flex;justify-content:flex-end;margin-top:30px}
+  /* DIFF: список с тонкими линиями */
+  .diff-list{border-top:1px solid var(--line)}
+  .drow{display:grid;grid-template-columns:90px 1.1fr 1.6fr;gap:30px;align-items:baseline;padding:30px 0;border-bottom:1px solid var(--line);transition:.25s}
+  .drow:hover{background:rgba(255,255,255,.025)}
+  .drow .n{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--ice);font-weight:600}
+  .drow h3{font-size:24px}
+  .drow p{font-size:14.5px;color:var(--muted)}
 
-  /* WHY: большие цифры */
-  .why .row{display:grid;grid-template-columns:130px 1fr;gap:28px;max-width:620px;margin-bottom:44px;align-items:start}
-  .why .row:nth-child(3){margin-left:90px}
-  .why .row:nth-child(4){margin-left:180px}
-  .why .num{font-family:var(--serif);font-size:96px;font-weight:700;color:var(--navy);line-height:.9}
-  .why h3{font-size:16px;font-family:var(--sans);font-weight:700;color:var(--navy);letter-spacing:.04em;margin-bottom:8px}
-  .why p{font-size:14px;color:var(--gray);max-width:380px}
+  /* METHOD */
+  .method{background:var(--bg-2)}
+  .msteps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-left:1px solid var(--line)}
+  .mstep{padding:10px 30px;border-right:1px solid var(--line)}
+  .mstep .mnum{font-family:var(--serif);font-size:52px;font-weight:700;color:transparent;-webkit-text-stroke:1px var(--ice);line-height:1}
+  .mstep h3{font-size:22px;margin:18px 0 10px}
+  .mstep p{font-size:14px;color:var(--muted)}
+
+  /* STUDENTS: фото-карты с текстом поверх */
+  .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ccard{position:relative;height:520px;border-radius:22px;overflow:hidden;display:flex;align-items:flex-end;transition:.35s;background-size:cover;background-position:center}
+  .ccard:hover{transform:translateY(-8px)}
+  .ccard::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,38,.05) 30%,rgba(8,17,30,.93) 82%)}
+  .ccard:nth-child(1){background-image:url("img/student-1.jpg")}
+  .ccard:nth-child(2){background-image:url("img/student-2.jpg")}
+  .ccard:nth-child(3){background-image:url("img/about-coach.jpg")}
+  .ccard .cb{position:relative;z-index:2;padding:30px 28px}
+  .ccard .tag{font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ice)}
+  .ccard h3{font-size:26px;margin:10px 0 8px}
+  .ccard p{font-size:14px;color:rgba(255,255,255,.78)}
+  .ccard .res{margin-top:14px;font-size:13px;font-weight:700;color:#fff;display:inline-flex;gap:8px;align-items:center;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 16px;backdrop-filter:blur(4px)}
+  .case-note{text-align:center;font-size:13px;color:var(--muted);margin-top:30px}
+  .ph-tag{display:inline-block;background:rgba(217,188,133,.18);color:#d9bc85;font-size:11px;padding:2px 10px;border-radius:99px;font-weight:700}
+
+  /* ABOUT */
+  .about{background:var(--bg-2)}
+  .about .grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:center}
+  .about .photo{height:600px;border-radius:24px;background:url("img/about-coach.jpg") center 30%/cover no-repeat;position:relative;overflow:hidden;box-shadow:0 40px 90px -40px rgba(0,0,0,.8)}
+  .about .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(8,17,30,.75))}
+  .about .photo .pcap{position:absolute;left:24px;bottom:24px;z-index:2;font-size:13.5px;font-weight:700;color:#fff}
+  .about .photo .pcap small{display:block;font-weight:500;color:rgba(255,255,255,.7);font-size:12px}
+  .about .sign{font-family:var(--serif);font-style:italic;font-size:24px;color:var(--ice);margin-top:12px}
+  .about p.bio{color:var(--muted);font-size:16px;margin:22px 0}
+  .about .creds{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);margin:30px 0 36px}
+  .about .cr{padding:18px 18px 18px 0;border-bottom:1px solid var(--line)}
+  .about .cr b{display:block;font-size:15px;color:#fff;font-weight:700}
+  .about .cr span{font-size:13px;color:var(--muted)}
 
   /* TEAM */
-  .team{text-align:center}
-  .team .row{display:flex;justify-content:center;gap:70px;flex-wrap:wrap;margin-top:20px}
-  .team .m{width:200px}
-  .team .role{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--navy);margin-bottom:18px}
-  .team .av{width:170px;height:170px;border-radius:50%;margin:0 auto;background-size:cover;background-position:center;box-shadow:0 22px 50px -28px rgba(22,54,92,.55)}
-  .team .m:nth-child(1) .av{background-image:url("img/team-ice.jpg")}
-  .team .m:nth-child(2) .av{background-image:url("img/team-choreo.jpg")}
-  .team .m:nth-child(3) .av{background-image:url("img/team-ofp.jpg")}
-  .team .nm{font-size:14px;font-weight:700;color:var(--ink);margin-top:16px}
-  .team .nt{font-size:12.5px;color:var(--gray)}
-  .ph-tag{display:inline-block;background:#f4ecd9;color:#9a7a35;font-size:10.5px;padding:1px 8px;border-radius:99px;font-weight:700;letter-spacing:.03em;vertical-align:middle}
-  .team .dots{display:flex;gap:10px;justify-content:center;margin-top:44px}
-  .team .dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
-  .team .dots i:first-child{background:var(--navy)}
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .tcardx{position:relative;height:420px;border-radius:22px;overflow:hidden;display:flex;align-items:flex-end;background-size:cover;background-position:center;transition:.35s}
+  .tcardx:hover{transform:translateY(-8px)}
+  .tcardx::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,38,0) 40%,rgba(8,17,30,.92))}
+  .tcardx:nth-child(1){background-image:url("img/team-ice.jpg")}
+  .tcardx:nth-child(2){background-image:url("img/team-choreo.jpg")}
+  .tcardx:nth-child(3){background-image:url("img/team-ofp.jpg")}
+  .tcardx .tb{position:relative;z-index:2;padding:26px}
+  .tcardx .role{font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ice)}
+  .tcardx h3{font-size:25px;margin:8px 0 4px}
+  .tcardx p{font-size:13.5px;color:rgba(255,255,255,.75)}
 
-  /* CHOOSE */
-  .choose .item{display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:center;padding:38px 0;border-bottom:1px solid var(--line)}
-  .choose .item:last-child{border-bottom:none}
-  .choose .ph{height:200px;border-radius:14px;background-size:cover;background-position:center;box-shadow:0 20px 46px -28px rgba(22,54,92,.5)}
-  .choose .item:nth-child(2) .ph{background-image:url("img/student-2.jpg")}
-  .choose .item:nth-child(3) .ph{background-image:url("img/about-coach.jpg");background-position:center 30%}
-  .choose .item:nth-child(4) .ph{background-image:url("img/bg-skates-1.jpg")}
-  .choose h3{font-size:22px;margin-bottom:10px}
-  .choose p{font-size:14px;color:var(--gray);max-width:520px;margin-bottom:20px}
-  .choose .meta{font-size:12.5px;font-weight:700;color:var(--navy);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+  /* GROUPS */
+  .groups{background:var(--bg-2)}
+  .gtable{display:grid;gap:14px}
+  .grow{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr auto;gap:18px;align-items:center;background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:24px 28px;transition:.25s;backdrop-filter:blur(4px)}
+  .grow:hover{background:rgba(255,255,255,.1)}
+  .grow .gname{font-family:var(--serif);font-size:24px;font-weight:600;color:#fff}
+  .grow .gmeta{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+  .grow .gval{font-size:15px;font-weight:600}
+  .grow .spots{font-size:13px;color:var(--text)}
+  .grow .spots .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#5fd49a;margin-right:7px}
+  .grow .spots.low .dot{background:#d9bc85}
+  .grow .btn{padding:13px 26px;font-size:14px}
+  .ghead{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:0 28px;display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr auto;gap:18px;margin-bottom:8px}
 
-  /* PRICING */
-  .prices .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:60px;align-items:start;max-width:980px}
-  .prices .p h3{font-size:21px;margin-bottom:18px}
-  .prices .p ul{list-style:none;display:grid;gap:9px;margin-bottom:24px}
-  .prices .p li{font-size:13.5px;color:var(--gray);padding-left:16px;position:relative}
-  .prices .p li::before{content:"—";position:absolute;left:0;color:var(--line)}
-  .prices .p .amt{font-family:var(--serif);font-size:30px;font-weight:700;color:var(--navy);margin-bottom:18px}
-  .prices .p .amt span{font-family:var(--sans);font-size:13px;color:var(--gray);font-weight:500}
-  .prices .note{font-size:12.5px;color:var(--gray);margin-top:36px}
+  /* PRICES */
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+  .price{background:var(--glass);border:1px solid var(--line);border-radius:24px;padding:40px 34px;display:flex;flex-direction:column;transition:.3s}
+  .price:hover{transform:translateY(-6px);background:rgba(255,255,255,.09)}
+  .price.feat{background:linear-gradient(170deg,rgba(159,211,255,.16),rgba(159,211,255,.05));border-color:rgba(159,211,255,.45)}
+  .price .tag{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ice)}
+  .price .ribbon{align-self:flex-start;background:#d9bc85;color:#3d2e0d;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:5px 14px;border-radius:99px;margin-bottom:16px}
+  .price .amount{font-family:var(--serif);font-size:46px;font-weight:700;color:#fff;margin:16px 0 4px;line-height:1}
+  .price .amount span{font-size:15px;font-family:var(--sans);font-weight:500;color:var(--muted)}
+  .price ul{list-style:none;margin:22px 0 30px;display:grid;gap:12px}
+  .price li{font-size:14.5px;display:flex;gap:11px;color:var(--text)}
+  .price li i{font-style:normal;color:var(--ice);font-weight:700}
+  .price .btn{margin-top:auto;justify-content:center}
 
-  /* JOIN */
-  .join{background:linear-gradient(180deg,var(--bg),var(--ice))}
-  .join h2{font-size:clamp(28px,3.6vw,42px);text-align:center;max-width:560px;margin:0 auto}
-  .join .sub{text-align:center;font-size:14px;color:var(--gray);margin:18px auto 56px;max-width:420px}
-  .join .grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;max-width:980px;margin:0 auto}
-  .join .ph{height:380px;border-radius:16px;background:url("img/team-ofp.jpg") center/cover no-repeat;box-shadow:0 26px 60px -34px rgba(22,54,92,.5)}
-  .join .ft{font-size:14px;font-weight:700;color:var(--navy);letter-spacing:.05em;margin-bottom:28px}
-  .join .fld{margin-bottom:26px}
-  .join input,.join select{width:100%;border:none;border-bottom:1.5px solid var(--line);background:transparent;padding:10px 2px;font-size:15px;font-family:var(--sans);color:var(--ink);transition:.25s}
-  .join input:focus,.join select:focus{outline:none;border-color:var(--navy)}
-  .join input::placeholder{color:#9fb0c0}
-  .join button{background:none;border:none;cursor:pointer;margin-top:8px}
-  .join .priv{font-size:11.5px;color:var(--gray);margin-top:18px}
+  /* QUOTES */
+  .tquote .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .tq{border-left:1px solid var(--line);padding-left:28px}
+  .tq .stars{color:#d9bc85;letter-spacing:4px;font-size:14px;margin-bottom:16px}
+  .tq p{font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.5;color:rgba(255,255,255,.88)}
+  .tq .who{margin-top:18px;font-size:13.5px;color:var(--muted)}
+  .tq .who b{color:#fff;font-weight:700}
+
+  /* BOOKING */
+  .booking{position:relative;background:linear-gradient(180deg,rgba(10,22,38,.92),rgba(10,22,38,.86)),url("img/bg-skates-2.jpg") center/cover no-repeat}
+  .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .booking p.sub{color:var(--muted);font-size:16.5px;margin-top:18px;max-width:440px}
+  .bps{margin-top:30px;display:grid;gap:14px}
+  .bps .bp{display:flex;gap:12px;align-items:center;font-size:15px;color:var(--text)}
+  .bps .bp i{font-style:normal;color:var(--ice);font-weight:700}
+  form{background:#fff;border-radius:24px;padding:40px 38px;color:#22354a;box-shadow:0 50px 100px -40px rgba(0,0,0,.8)}
+  form h3{color:#16365c;font-size:26px;margin-bottom:6px}
+  form .fnote{color:#7d8fa3;font-size:13.5px;margin-bottom:24px}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:13px;font-weight:700;color:#16365c;margin-bottom:7px}
+  .field input,.field select{width:100%;padding:14px 16px;border:1.5px solid #dde6ef;border-radius:12px;font-size:15px;font-family:var(--sans);color:#22354a;background:#fbfcfe;transition:.2s}
+  .field input:focus,.field select:focus{outline:none;border-color:#4a8cc4;box-shadow:0 0 0 4px rgba(74,140,196,.15)}
+  form .btn{width:100%;justify-content:center;background:#16365c;color:#fff;margin-top:6px}
+  form .btn:hover{background:#0f2a4a}
+  form .priv{font-size:12px;color:#7d8fa3;text-align:center;margin-top:14px}
 
   /* FOOTER */
-  footer{background:var(--navy);color:#c6d4e2;padding:38px 0;position:relative;z-index:1}
-  .fgrid{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
-  footer .flogo{font-family:var(--serif);font-size:18px;font-weight:700;color:#fff}
-  footer .fmeta{font-size:13px;display:flex;gap:30px;flex-wrap:wrap}
-  footer .soc{display:flex;gap:10px}
-  footer .soc a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;transition:.2s}
-  footer .soc a:hover{background:rgba(255,255,255,.28)}
+  footer{background:#060e1a;padding:60px 0 30px;color:var(--muted)}
+  .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:42px;border-bottom:1px solid var(--line)}
+  footer .logo{font-size:19px}
+  footer p.fa{font-size:14px;margin-top:16px;max-width:280px;line-height:1.7}
+  footer h4{color:#fff;font-size:13.5px;font-weight:700;letter-spacing:.06em;margin-bottom:16px}
+  footer ul{list-style:none;display:grid;gap:10px}
+  footer ul a,footer ul li{font-size:14px}
+  footer ul a:hover{color:#fff}
+  footer .soc{display:flex;gap:12px;margin-top:18px}
+  footer .soc a{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;transition:.2s}
+  footer .soc a:hover{background:rgba(255,255,255,.22)}
+  .fbot{display:flex;justify-content:space-between;padding-top:22px;font-size:13px;flex-wrap:wrap;gap:8px}
 
-  @media(max-width:920px){
+  @media(max-width:980px){
     .nav-links{display:none}
     .burger{display:block}
-    .hero .grid,.story .grid,.join .grid{grid-template-columns:1fr}
-    .hero .photo{height:420px}
-    .why .row:nth-child(3),.why .row:nth-child(4){margin-left:0}
-    .why .row{grid-template-columns:80px 1fr}
-    .why .num{font-size:64px}
-    .choose .item{grid-template-columns:1fr;gap:20px}
-    .choose .ph{height:220px}
-    .prices .grid{grid-template-columns:1fr;gap:44px}
-    .team .row{gap:40px}
-    .pad{padding:64px 0}
+    .about .grid,.book-grid{grid-template-columns:1fr}
+    .case-grid,.team-grid,.price-grid{grid-template-columns:1fr 1fr}
+    .tquote .tgrid{grid-template-columns:1fr}
+    .fgrid{grid-template-columns:1fr 1fr}
+    .msteps{grid-template-columns:1fr 1fr;border-left:none}
+    .mstep{border-right:none;border-left:1px solid var(--line);margin-bottom:30px}
+    .drow{grid-template-columns:60px 1fr;gap:14px}
+    .drow p{grid-column:2}
+    .ghead{display:none}
+    .grow{grid-template-columns:1fr 1fr;row-gap:8px}
+    .grow .gbtn{grid-column:1/-1;margin-top:8px}
+    .grow .gbtn .btn{width:100%;justify-content:center}
+    .about .photo{height:440px}
+    .ccard{height:440px}
+  }
+  @media(max-width:640px){
+    .case-grid,.team-grid,.price-grid,.fgrid,.about .creds{grid-template-columns:1fr}
+    section.block{padding:72px 0}
+    .hero .strip .s{padding-right:24px;margin-right:24px}
+    .msteps{grid-template-columns:1fr}
   }
 </style>
 </head>
 <body>
 
-<span class="wm" style="top:120px;right:-60px;width:280px;height:280px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".7" stroke-linecap="round"><path d="M12 2v20M5 5l14 14M19 5L5 19M12 5.5L9.5 3M12 5.5L14.5 3M12 18.5L9.5 21M12 18.5l2.5 2.5M6.8 10.3L3.4 9.4M6.8 13.7l-3.4.9M17.2 10.3l3.4-.9M17.2 13.7l3.4.9"/></svg></span>
-<span class="wm" style="top:900px;left:-80px;width:320px;height:320px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".7" stroke-linecap="round"><path d="M12 2v20M5 5l14 14M19 5L5 19M12 5.5L9.5 3M12 5.5L14.5 3M12 18.5L9.5 21M12 18.5l2.5 2.5"/></svg></span>
-<span class="wm" style="top:1900px;right:5%;width:240px;height:240px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".7" stroke-linecap="round"><path d="M12 2v20M5 5l14 14M19 5L5 19M6.8 10.3L3.4 9.4M6.8 13.7l-3.4.9M17.2 10.3l3.4-.9M17.2 13.7l3.4.9"/></svg></span>
-<span class="wm" style="top:3000px;left:3%;width:260px;height:260px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".7" stroke-linecap="round"><path d="M12 2v20M5 5l14 14M19 5L5 19M12 5.5L9.5 3M12 5.5L14.5 3M12 18.5L9.5 21M12 18.5l2.5 2.5"/></svg></span>
-<span class="wm" style="top:4100px;right:-40px;width:300px;height:300px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".7" stroke-linecap="round"><path d="M12 2v20M5 5l14 14M19 5L5 19M6.8 10.3L3.4 9.4M6.8 13.7l-3.4.9M17.2 10.3l3.4-.9M17.2 13.7l3.4.9"/></svg></span>
-
-<header>
+<header id="hdr">
   <div class="wrap nav">
-    <div class="logo">Ангелина Кальницкая<small>школа фигурного катания</small></div>
+    <a href="#" class="logo">Ангелина Кальницкая<small>Школа фигурного катания</small></a>
     <nav class="nav-links">
-      <a href="#story">О школе</a>
-      <a href="#why">Почему мы</a>
-      <a href="#team">Тренеры</a>
-      <a href="#choose">Занятия</a>
-      <a href="#prices">Тарифы</a>
-      <a href="#join">Контакты</a>
+      <a href="#diff">Методика</a>
+      <a href="#students">Ученики</a>
+      <a href="#about">Тренер</a>
+      <a href="#groups">Группы</a>
+      <a href="#prices">Абонементы</a>
+      <a href="#book" class="btn btn-glass">Записаться</a>
     </nav>
     <button class="burger" aria-label="Меню">☰</button>
   </div>
@@ -182,215 +243,332 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="wrap body">
+    <div class="kick">Авторская школа мастера спорта</div>
+    <h1 style="margin-top:22px">Здесь рождаются <em>фигуристы</em></h1>
+    <p class="lead">Системная подготовка: техника на льду, хореография и ОФП — с личным планом для каждого ученика и в группах, где тренер видит каждого.</p>
+    <div class="btns">
+      <a href="#book" class="btn btn-white">Записаться на пробное →</a>
+      <a href="#diff" class="btn btn-glass">Смотреть программы</a>
+    </div>
+    <div class="strip">
+      <div class="s"><b>25 лет</b><span>на льду</span></div>
+      <div class="s"><b>МС</b><span>мастер спорта</span></div>
+      <div class="s"><b>300+</b><span>учеников</span></div>
+      <div class="s"><b>до 8</b><span>детей в группе</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFF -->
+<section class="block" id="diff">
+  <div class="wrap">
+    <div class="shead">
+      <div class="kick">Чем мы отличаемся</div>
+      <h2>Подготовка 360° — <em>лёд, тело и артистизм</em></h2>
+      <p>Фигурист строится из трёх частей. Большинство секций тренируют только первую — мы тренируем все три и ведём каждого ребёнка по личному плану.</p>
+    </div>
+    <div class="diff-list">
+      <div class="drow"><div class="n">01</div><h3>Лёд: техника как в спортшколе</h3><p>Скольжение, прыжки, вращения по методике спортивной подготовки. База ставится правильно с первого года — переучивать не придётся.</p></div>
+      <div class="drow"><div class="n">02</div><h3>Хореография и артистизм</h3><p>Постановка корпуса, пластика, музыкальность. Именно хореография отличает фигуриста от «человека на коньках».</p></div>
+      <div class="drow"><div class="n">03</div><h3>ОФП и растяжка</h3><p>Прыжок рождается в зале, а не на льду. Сила, координация и гибкость — отдельные тренировки, без которых нет прогресса.</p></div>
+      <div class="drow"><div class="n">04</div><h3>Индивидуальный план</h3><p>На пробном занятии — диагностика. Дальше у каждого своя цель на сезон: от уверенного скольжения до спортивного разряда.</p></div>
+      <div class="drow"><div class="n">05</div><h3>Малые группы — до 8 детей</h3><p>Тренер видит каждого ученика на каждой тренировке. Никаких «потерялся в толпе из двадцати детей».</p></div>
+      <div class="drow"><div class="n">06</div><h3>Прогресс виден родителям</h3><p>Честная обратная связь, видео с тренировок и открытые занятия для родителей.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="block method">
+  <div class="wrap">
+    <div class="shead">
+      <div class="kick">Путь ученика</div>
+      <h2>От первого льда до результата — <em>по шагам</em></h2>
+    </div>
+    <div class="msteps">
+      <div class="mstep"><div class="mnum">01</div><h3>Диагностика</h3><p>Пробное занятие: смотрим физику, координацию, смелость на льду. Родителям — честный разбор.</p></div>
+      <div class="mstep"><div class="mnum">02</div><h3>Личный план</h3><p>Подбираем группу и цель на сезон: первый лёд, базовая техника или подготовка к разряду.</p></div>
+      <div class="mstep"><div class="mnum">03</div><h3>Тренировки 360°</h3><p>Лёд, хореография и ОФП в недельном цикле — каждый блок усиливает остальные.</p></div>
+      <div class="mstep"><div class="mnum">04</div><h3>Контроль и старты</h3><p>Контрольные прокаты, открытые уроки и соревнования — ребёнок гордится результатом.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDENTS -->
+<section class="block" id="students">
+  <div class="wrap">
+    <div class="shead center">
+      <div class="kick">Наши ученики</div>
+      <h2>Истории, которыми мы <em>гордимся</em></h2>
+    </div>
+    <div class="case-grid">
+      <div class="ccard">
+        <div class="cb">
+          <div class="tag">Спортивный путь</div>
+          <h3>Из новичка — в спортсменку</h3>
+          <p>От базовой подготовки до выступлений на соревнованиях по одиночному катанию.</p>
+          <div class="res">🏆 соревнования по одиночному катанию</div>
+        </div>
+      </div>
+      <div class="ccard">
+        <div class="cb">
+          <div class="tag">Преодоление</div>
+          <h3>Боялся льда — сдал на разряд</h3>
+          <p>Пришёл в 6 лет со страхом падений. Игровая адаптация, ОФП — и юношеский разряд за два сезона.</p>
+          <div class="res">⛸ юношеский разряд за 2 сезона</div>
+        </div>
+      </div>
+      <div class="ccard">
+        <div class="cb">
+          <div class="tag">Взрослая мечта</div>
+          <h3>Первый лёд в 32 года</h3>
+          <p>Пришла «просто научиться кататься» — через год выступила в любительском шоу на льду.</p>
+          <div class="res">✨ от нуля до выступления за год</div>
+        </div>
+      </div>
+    </div>
+    <div class="case-note">Фото и истории — стоковые примеры для макета, заменим реальными учениками Ангелины <span class="ph-tag">заглушка</span></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="block about" id="about">
   <div class="wrap grid">
-    <div>
-      <h1>Мастерство на льду — школа фигурного катания</h1>
-      <p class="sub">Присоединяйтесь к школе мастера спорта Ангелины Кальницкой: раскройте потенциал ребёнка с опытным тренером и в дружелюбной атмосфере.</p>
-      <a href="#join" class="go">ПОПРОБОВАТЬ <span class="c">→</span></a>
-      <div class="stats">
-        <div><b>25</b><span>лет на льду</span></div>
-        <div><b>МС</b><span>мастер спорта</span></div>
-        <div><b>до 8</b><span>детей в группе</span></div>
-      </div>
-    </div>
     <div class="photo">
-      <div class="cap">тренировка · одиночное катание</div>
+      <div class="pcap">Ангелина Кальницкая<small>мастер спорта · 25 лет на льду</small></div>
     </div>
-  </div>
-</section>
-
-<!-- STORY -->
-<section class="story pad" id="story">
-  <div class="wrap">
-    <div class="shead"><h2>Ваша история на льду начинается здесь</h2></div>
-    <div class="grid">
-      <p>В нашей школе мы верим, что каждый ученик — уникальная личность со своими способностями и целями. Поэтому у каждого ребёнка свой план: от первых шагов на льду до спортивных разрядов.</p>
-      <p>Мы строим комфортную и вдохновляющую атмосферу, где ребёнок раскрывает потенциал и достигает результатов, которыми гордится вся семья: лёд, хореография и ОФП в едином недельном цикле.</p>
-    </div>
-    <div class="photos">
-      <div class="ph p1"></div>
-      <div class="ph p2"></div>
-    </div>
-    <div class="more"><a href="#choose" class="go">СМОТРЕТЬ ЗАНЯТИЯ <span class="c">→</span></a></div>
-  </div>
-</section>
-
-<!-- WHY -->
-<section class="why pad" id="why">
-  <div class="wrap">
-    <div class="shead"><h2>Почему вам подойдёт наша школа?</h2></div>
-    <div class="row">
-      <div class="num">1</div>
-      <div>
-        <h3>Тренер — мастер спорта</h3>
-        <p>25 лет на льду как спортсменка и тренер. Профессиональная спортивная методика — база ставится правильно с первого года.</p>
+    <div>
+      <div class="kick">Тренер и основатель школы</div>
+      <h2 style="margin-top:18px">Ангелина Кальницкая</h2>
+      <div class="sign">мастер спорта по фигурному катанию</div>
+      <p class="bio">25 лет жизни на льду — сначала как спортсменка, затем как тренер. Работала с детьми всех уровней: от четырёхлетних малышей, впервые ступающих на лёд, до спортсменов, готовящихся к разрядам и соревнованиям.</p>
+      <p class="bio">Теперь Ангелина собирает этот опыт в собственную школу: профессиональная спортивная методика — но с человеческим вниманием к каждому ребёнку.</p>
+      <div class="creds">
+        <div class="cr"><b>Мастер спорта</b><span>по фигурному катанию</span></div>
+        <div class="cr"><b>25 лет на льду</b><span>спортсменка и тренер</span></div>
+        <div class="cr"><b>Методика 360°</b><span>лёд + хореография + ОФП</span></div>
+        <div class="cr"><b>Личный план</b><span>каждому ученику</span></div>
       </div>
-    </div>
-    <div class="row">
-      <div class="num">2</div>
-      <div>
-        <h3>Индивидуальный подход</h3>
-        <p>Каждый ученик уникален. На пробном занятии — диагностика, дальше личный план и честная обратная связь родителям.</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="num">3</div>
-      <div>
-        <h3>Дружелюбная атмосфера</h3>
-        <p>Малые группы до 8 детей: тренер видит каждого. Занятия — это не только техника, но и радость, дружба и уверенность в себе.</p>
-      </div>
+      <a href="#book" class="btn btn-white">Попасть к Ангелине на пробное →</a>
     </div>
   </div>
 </section>
 
 <!-- TEAM -->
-<section class="team pad" id="team">
+<section class="block" id="team">
   <div class="wrap">
-    <div class="shead center"><h2>Наша команда тренеров</h2></div>
-    <div class="row">
-      <div class="m">
-        <div class="role">Главный тренер</div>
-        <div class="av"></div>
-        <div class="nm">Ангелина Кальницкая</div>
-        <div class="nt">мастер спорта · лёд</div>
-      </div>
-      <div class="m">
-        <div class="role">Хореография</div>
-        <div class="av"></div>
-        <div class="nm">Имя Фамилия <span class="ph-tag">заглушка</span></div>
-        <div class="nt">балетная подготовка · пластика</div>
-      </div>
-      <div class="m">
-        <div class="role">ОФП и растяжка</div>
-        <div class="av"></div>
-        <div class="nm">Имя Фамилия <span class="ph-tag">заглушка</span></div>
-        <div class="nt">сила · координация · гибкость</div>
-      </div>
+    <div class="shead center">
+      <div class="kick">Тренерский состав</div>
+      <h2>Команда школы</h2>
     </div>
-    <div class="dots"><i></i><i></i><i></i></div>
+    <div class="team-grid">
+      <div class="tcardx"><div class="tb"><div class="role">Лёд · главный тренер</div><h3>Ангелина Кальницкая</h3><p>Мастер спорта · вся ледовая подготовка и личный план каждого ученика</p></div></div>
+      <div class="tcardx"><div class="tb"><div class="role">Хореография</div><h3>Имя Фамилия <span class="ph-tag">заглушка</span></h3><p>Балетная подготовка, пластика и музыкальность</p></div></div>
+      <div class="tcardx"><div class="tb"><div class="role">ОФП и растяжка</div><h3>Имя Фамилия <span class="ph-tag">заглушка</span></h3><p>Сила, координация и прыжковая подготовка в зале</p></div></div>
+    </div>
   </div>
 </section>
 
-<!-- CHOOSE -->
-<section class="choose pad" id="choose">
+<!-- GROUPS -->
+<section class="block groups" id="groups">
   <div class="wrap">
-    <div class="shead"><h2>Выберите то, что подходит именно вам:</h2></div>
-    <div class="item">
-      <div class="ph"></div>
-      <div>
-        <div class="meta">4–12 лет · группы до 8 детей</div>
-        <h3>Групповые занятия</h3>
-        <p>Тренировки в малых группах: техника скольжения, прыжки и вращения в атмосфере дружбы и поддержки. Ребёнок получает план развития и внимание тренера на каждом занятии.</p>
-        <a href="#join" class="go">УЗНАТЬ БОЛЬШЕ <span class="c">→</span></a>
-      </div>
+    <div class="shead">
+      <div class="kick">Идёт набор · сезон 2026/27</div>
+      <h2>Группы и <em>расписание</em></h2>
+      <p>Группы до 8 детей — чтобы каждому доставалось внимание тренера. Места ограничены.</p>
     </div>
-    <div class="item">
-      <div class="ph"></div>
-      <div>
-        <div class="meta">любой возраст · 1-на-1</div>
-        <h3>Индивидуальные тренировки</h3>
-        <p>Персональная программа под цели ученика: быстрый прогресс, постановка сложных элементов и подготовка к разрядам и стартам — в удобное время.</p>
-        <a href="#join" class="go">УЗНАТЬ БОЛЬШЕ <span class="c">→</span></a>
+    <div class="ghead"><div>Группа</div><div>Возраст</div><div>Дни и время</div><div>Места</div><div></div></div>
+    <div class="gtable">
+      <div class="grow">
+        <div><div class="gname">Первый лёд</div><div class="gmeta">игровая адаптация</div></div>
+        <div class="gval">4–6 лет</div><div class="gval">Вт, Чт · 17:00</div>
+        <div class="spots"><span class="dot"></span>есть места</div>
+        <div class="gbtn"><a href="#book" class="btn btn-white">Записаться</a></div>
       </div>
-    </div>
-    <div class="item">
-      <div class="ph"></div>
-      <div>
-        <div class="meta">в зале · дополнение ко льду</div>
-        <h3>Хореография и ОФП</h3>
-        <p>Постановка корпуса, пластика и музыкальность плюс сила, координация и растяжка. Именно зал превращает катание в выступление — и готовит тело к прыжкам.</p>
-        <a href="#join" class="go">УЗНАТЬ БОЛЬШЕ <span class="c">→</span></a>
+      <div class="grow">
+        <div><div class="gname">Базовая подготовка</div><div class="gmeta">техника + хореография + ОФП</div></div>
+        <div class="gval">7–12 лет</div><div class="gval">Пн, Ср, Пт · 18:00</div>
+        <div class="spots low"><span class="dot"></span>осталось 3 места</div>
+        <div class="gbtn"><a href="#book" class="btn btn-white">Записаться</a></div>
+      </div>
+      <div class="grow">
+        <div><div class="gname">Спортивная группа</div><div class="gmeta">разряды и старты · по отбору</div></div>
+        <div class="gval">по уровню</div><div class="gval">Пн–Сб · утро/вечер</div>
+        <div class="spots low"><span class="dot"></span>набор по просмотру</div>
+        <div class="gbtn"><a href="#book" class="btn btn-white">На просмотр</a></div>
+      </div>
+      <div class="grow">
+        <div><div class="gname">Взрослые · 1-на-1</div><div class="gmeta">с нуля и для себя</div></div>
+        <div class="gval">14+ лет</div><div class="gval">Сб, Вс · 11:00 и по записи</div>
+        <div class="spots"><span class="dot"></span>есть места</div>
+        <div class="gbtn"><a href="#book" class="btn btn-white">Записаться</a></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PRICES -->
-<section class="prices pad" id="prices">
+<section class="block" id="prices">
   <div class="wrap">
-    <div class="shead"><h2>Тарифы и цены</h2></div>
-    <div class="grid">
-      <div class="p">
-        <h3>Пробное</h3>
-        <ul>
-          <li>1 занятие в группе</li>
-          <li>диагностика уровня</li>
-          <li>план развития для родителей</li>
-        </ul>
-        <div class="amt">990 ₽ <span>/ занятие</span></div>
-        <a href="#join" class="go">ЗАПИСАТЬСЯ <span class="c">→</span></a>
-      </div>
-      <div class="p">
-        <h3>Базовый</h3>
-        <ul>
-          <li>8 тренировок в месяц</li>
-          <li>лёд + зал в недельном цикле</li>
-          <li>постоянное место в группе</li>
-        </ul>
-        <div class="amt">7 200 ₽ <span>/ месяц</span></div>
-        <a href="#join" class="go">ВЫБРАТЬ <span class="c">→</span></a>
-      </div>
-      <div class="p">
-        <h3>Индивидуальный</h3>
-        <ul>
-          <li>персональные тренировки</li>
-          <li>программа под ваши цели</li>
-          <li>гибкое расписание</li>
-        </ul>
-        <div class="amt">2 500 ₽ <span>/ занятие</span></div>
-        <a href="#join" class="go">ЗАПИСАТЬСЯ <span class="c">→</span></a>
-      </div>
+    <div class="shead center">
+      <div class="kick">Абонементы</div>
+      <h2>Стоимость занятий</h2>
     </div>
-    <p class="note">Цены — примерные для макета <span class="ph-tag">заглушка</span> · уточним при запуске</p>
-  </div>
-</section>
-
-<!-- JOIN -->
-<section class="join pad" id="join">
-  <div class="wrap">
-    <h2>Наша школа — идеальное место для вашего ребёнка</h2>
-    <p class="sub">Оставьте заявку — перезвоним в течение дня, подберём группу и расскажем, что взять с собой на первый лёд.</p>
-    <div class="grid">
-      <div class="ph"></div>
-      <form onsubmit="event.preventDefault();const b=this.querySelector('.go');b.firstChild.textContent='ЗАЯВКА ОТПРАВЛЕНА ✓ ';">
-        <div class="ft">Присоединяйтесь к нашей команде</div>
-        <div class="fld"><input type="text" placeholder="Ваше имя" required></div>
-        <div class="fld"><input type="tel" placeholder="+7 (___) ___-__-__" required></div>
-        <div class="fld">
-          <select>
-            <option>Ребёнок 4–6 лет — первый лёд</option>
-            <option>Ребёнок 7–12 лет — группа</option>
-            <option>Индивидуальные тренировки</option>
-            <option>Взрослый — с нуля</option>
-          </select>
-        </div>
-        <button type="submit"><span class="go">ПРИСОЕДИНИТЬСЯ <span class="c">→</span></span></button>
-        <p class="priv">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Демо-форма макета.</p>
-      </form>
+    <div class="price-grid">
+      <div class="price">
+        <span class="tag">Пробное + диагностика</span>
+        <div class="amount">990 ₽ <span>/ занятие</span></div>
+        <ul>
+          <li><i>—</i> Первое занятие в группе</li>
+          <li><i>—</i> Диагностика уровня ребёнка</li>
+          <li><i>—</i> План развития для родителей</li>
+          <li><i>—</i> Без обязательств</li>
+        </ul>
+        <a href="#book" class="btn btn-glass">Записаться</a>
+      </div>
+      <div class="price feat">
+        <span class="ribbon">Популярный</span>
+        <span class="tag">Абонемент на месяц</span>
+        <div class="amount">7 200 ₽ <span>/ 8 занятий</span></div>
+        <ul>
+          <li><i>—</i> 2 тренировки в неделю: лёд + зал</li>
+          <li><i>—</i> Постоянное место в группе</li>
+          <li><i>—</i> Личный план и контроль прогресса</li>
+          <li><i>—</i> Выгоднее, чем разово</li>
+        </ul>
+        <a href="#book" class="btn btn-white">Выбрать абонемент</a>
+      </div>
+      <div class="price">
+        <span class="tag">Индивидуально</span>
+        <div class="amount">2 500 ₽ <span>/ занятие</span></div>
+        <ul>
+          <li><i>—</i> Персональное внимание тренера</li>
+          <li><i>—</i> Программа под ваши цели</li>
+          <li><i>—</i> Гибкое расписание</li>
+          <li><i>—</i> Для детей и взрослых</li>
+        </ul>
+        <a href="#book" class="btn btn-glass">Записаться</a>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- QUOTES -->
+<section class="block tquote">
+  <div class="wrap">
+    <div class="shead center">
+      <div class="kick">Отзывы</div>
+      <h2>Что говорят <em>родители</em></h2>
+    </div>
+    <div class="tgrid">
+      <div class="tq">
+        <div class="stars">★★★★★</div>
+        <p>«Дочка пришла в 5 лет, боялась льда. Через полгода — катается сама и не хочет уходить с катка. Тренер чувствует каждого ребёнка.»</p>
+        <div class="who"><b>Мария</b> · мама ученицы, 6 лет</div>
+      </div>
+      <div class="tq">
+        <div class="stars">★★★★★</div>
+        <p>«Подкупила системность: не просто лёд, а ещё хореография и зал. Сын за сезон стал другим — осанка, дисциплина, первые прыжки.»</p>
+        <div class="who"><b>Дмитрий</b> · папа ученика, 9 лет</div>
+      </div>
+      <div class="tq">
+        <div class="stars">★★★★★</div>
+        <p>«Встала на коньки в 30 — думала, поздно. За сезон техника встала так, что не стыдно выйти на лёд. Огромная благодарность.»</p>
+        <div class="who"><b>Екатерина</b> · взрослая группа</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="block booking" id="book">
+  <div class="wrap book-grid">
+    <div>
+      <div class="kick">Первый шаг</div>
+      <h2 style="margin-top:18px">Пробное занятие с диагностикой</h2>
+      <p class="sub">Приведите ребёнка на пробное занятие — Ангелина посмотрит его на льду и честно скажет, с чего начать и куда он может вырасти.</p>
+      <div class="bps">
+        <div class="bp"><i>—</i> Перезвоним в течение дня и подберём группу</div>
+        <div class="bp"><i>—</i> Расскажем, что взять с собой на первый лёд</div>
+        <div class="bp"><i>—</i> После занятия — разбор и план развития</div>
+      </div>
+    </div>
+    <form onsubmit="event.preventDefault();const b=this.querySelector('.btn');b.textContent='Заявка отправлена ✓';b.style.background='#1b7d54';">
+      <h3>Заявка на пробное занятие</h3>
+      <p class="fnote">Демо-форма макета — отправка пока без сервера.</p>
+      <div class="field"><label>Ваше имя</label><input type="text" placeholder="Как к вам обращаться" required></div>
+      <div class="field"><label>Телефон</label><input type="tel" placeholder="+7 (___) ___-__-__" required></div>
+      <div class="field"><label>Кто будет заниматься</label>
+        <select>
+          <option>Ребёнок 4–6 лет — первый лёд</option>
+          <option>Ребёнок 7–12 лет — базовая подготовка</option>
+          <option>Спортивная группа — на просмотр</option>
+          <option>Взрослый — с нуля / для себя</option>
+          <option>Индивидуальные занятия</option>
+        </select>
+      </div>
+      <button type="submit" class="btn">Записаться на пробное →</button>
+      <p class="priv">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <div class="wrap fgrid">
-    <div class="flogo">Ангелина Кальницкая</div>
-    <div class="fmeta">
-      <span>г. _______, ледовая арена «______» <span class="ph-tag">заглушка</span></span>
-      <span>+7 (___) ___-__-__</span>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a href="#" class="logo">Ангелина Кальницкая<small>Школа фигурного катания</small></a>
+        <p class="fa">Школа системной подготовки фигуристов: лёд, хореография и ОФП — и личный план каждому ученику.</p>
+        <div class="soc">
+          <a href="#" aria-label="Telegram">✈</a>
+          <a href="#" aria-label="WhatsApp">✆</a>
+          <a href="#" aria-label="VK">vk</a>
+        </div>
+      </div>
+      <div>
+        <h4>Школа</h4>
+        <ul>
+          <li><a href="#diff">Методика</a></li>
+          <li><a href="#students">Наши ученики</a></li>
+          <li><a href="#about">О тренере</a></li>
+          <li><a href="#groups">Группы</a></li>
+          <li><a href="#prices">Абонементы</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li>+7 (___) ___-__-__ <span class="ph-tag">заглушка</span></li>
+          <li><a href="#">Telegram · WhatsApp</a></li>
+          <li><a href="#">@kalnitskaya_school</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Каток</h4>
+        <ul>
+          <li>г. _______ <span class="ph-tag">город</span></li>
+          <li>Ледовая арена «______»</li>
+          <li>ул. ________, д. __</li>
+        </ul>
+      </div>
     </div>
-    <div class="soc">
-      <a href="#" aria-label="Telegram">✈</a>
-      <a href="#" aria-label="WhatsApp">✆</a>
-      <a href="#" aria-label="VK">vk</a>
+    <div class="fbot">
+      <div>© 2026 Школа фигурного катания Ангелины Кальницкой</div>
+      <div>Дизайн-макет v8 · фото-первый</div>
     </div>
   </div>
 </footer>
 
 <script>
+  const hdr=document.getElementById('hdr');
+  const onScroll=()=>{hdr.classList.toggle('scrolled',window.scrollY>30)};
+  window.addEventListener('scroll',onScroll);onScroll();
   document.querySelector('.burger').addEventListener('click',()=>{
     const m=document.querySelector('.nav-links');
     const open=m.style.display==='flex';
-    Object.assign(m.style,open?{display:''}:{display:'flex',position:'absolute',top:'70px',right:'28px',flexDirection:'column',background:'#fff',padding:'18px 24px',borderRadius:'14px',gap:'14px',boxShadow:'0 24px 60px -24px rgba(22,54,92,.4)',zIndex:50});
+    Object.assign(m.style,open?{display:''}:{display:'flex',position:'absolute',top:'70px',right:'28px',flexDirection:'column',background:'rgba(8,17,30,.97)',padding:'18px 24px',borderRadius:'16px',gap:'15px',boxShadow:'0 24px 60px -20px rgba(0,0,0,.8)'});
   });
 </script>
 </body>
