@@ -39,26 +39,17 @@
   header{position:fixed;top:0;left:0;right:0;z-index:50;transition:.35s}
   header.scrolled{background:rgba(8,17,30,.85);backdrop-filter:blur(14px);box-shadow:0 8px 40px -20px rgba(0,0,0,.8)}
   .nav{display:flex;align-items:center;justify-content:space-between;padding-top:20px;padding-bottom:20px}
-  .logo{font-family:var(--serif);font-size:21px;font-weight:600;color:#16365c;line-height:1.2;transition:.3s}
-  .logo small{display:block;font-family:var(--sans);font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:#5d7a93;font-weight:600}
-  header.scrolled .logo{color:#fff}
-  header.scrolled .logo small{color:rgba(255,255,255,.6)}
+  .logo{font-family:var(--serif);font-size:21px;font-weight:600;color:#fff;line-height:1.2}
+  .logo small{display:block;font-family:var(--sans);font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:600}
   .nav-links{display:flex;align-items:center;gap:30px}
-  .nav-links a{font-size:14px;font-weight:600;color:#3d5a75;transition:.2s;white-space:nowrap}
-  .nav-links a:hover{color:#16365c}
-  header.scrolled .nav-links a{color:rgba(255,255,255,.75)}
-  header.scrolled .nav-links a:hover{color:#fff}
+  .nav-links a{font-size:14px;font-weight:600;color:rgba(255,255,255,.75);transition:.2s;white-space:nowrap}
+  .nav-links a:hover{color:#fff}
   .nav-links .btn{padding:12px 26px;font-size:14px}
-  .nav-links .btn-glass{background:rgba(22,54,92,.08);border:1.5px solid #9db8cf;color:#16365c}
-  .nav-links .btn-glass:hover{background:#16365c;color:#fff}
-  header.scrolled .nav-links .btn-glass{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4);color:#fff}
-  .burger{display:none;background:none;border:none;color:#16365c;font-size:25px;cursor:pointer}
-  header.scrolled .burger{color:#fff}
+  .burger{display:none;background:none;border:none;color:#fff;font-size:25px;cursor:pointer}
 
   /* HERO */
   .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;
-    background:linear-gradient(90deg,rgba(250,253,255,.95) 0%,rgba(248,252,255,.84) 32%,rgba(248,252,255,.3) 64%,rgba(248,252,255,.06) 100%),url("img/hero-main.jpg") center 35%/cover no-repeat}
-  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:140px;background:linear-gradient(180deg,rgba(10,22,38,0),var(--bg))}
+    background:linear-gradient(180deg,rgba(7,16,28,.35) 0%,rgba(7,16,28,.45) 55%,rgba(10,22,38,.97) 100%),url("img/hero-dark.jpg") center 22%/cover no-repeat}
   .hero .body{position:relative;z-index:2}
   .hero .body{padding-top:140px;padding-bottom:80px;max-width:900px}
   .hero h1{font-size:clamp(44px,6.4vw,88px);line-height:1.02;text-shadow:0 4px 44px rgba(0,0,0,.5)}
@@ -69,17 +60,6 @@
   .hero .strip .s{padding:22px 44px 0 0;margin-right:44px}
   .hero .strip b{font-family:var(--serif);font-size:34px;font-weight:700;display:block;line-height:1.1;color:#fff}
   .hero .strip span{font-size:12.5px;color:var(--muted);letter-spacing:.06em}
-  .hero .kick{color:#2f6da3}
-  .hero .kick::before{background:#2f6da3}
-  .hero h1{color:#16365c;text-shadow:none}
-  .hero h1 em{color:#3578ad}
-  .hero p.lead{color:#3d5a75;font-weight:400}
-  .hero .btn-white{background:#16365c;color:#fff;box-shadow:0 16px 36px -14px rgba(22,54,92,.55)}
-  .hero .btn-glass{background:rgba(255,255,255,.55);border:1.5px solid #9db8cf;color:#16365c;backdrop-filter:blur(6px)}
-  .hero .btn-glass:hover{background:#16365c;color:#fff}
-  .hero .strip{border-top-color:rgba(22,54,92,.25)}
-  .hero .strip b{color:#16365c}
-  .hero .strip span{color:#5d7a93}
 
   /* SECTION basics */
   section.block{padding:110px 0;position:relative}
@@ -114,7 +94,7 @@
   .ccard:hover{transform:translateY(-8px)}
   .ccard::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,38,.05) 30%,rgba(8,17,30,.93) 82%)}
   .ccard:nth-child(1){background-image:url("img/st-red-1.jpg");background-position:center 30%}
-  .ccard:nth-child(2){background-image:url("img/st-face-2.jpg");background-position:center 30%}
+  .ccard:nth-child(2){background-image:url("img/story-boy.jpg");background-position:center 25%}
   .ccard:nth-child(3){background-image:url("img/st-red-3.jpg");background-position:center 25%}
   .ccard .cb{position:relative;z-index:2;padding:30px 28px}
   .ccard .tag{font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ice)}
@@ -158,8 +138,8 @@
   .gal::after{content:attr(data-cap);position:absolute;left:0;right:0;bottom:0;padding:40px 18px 16px;font-size:12.5px;font-weight:700;color:#fff;letter-spacing:.04em;background:linear-gradient(180deg,transparent,rgba(8,17,30,.85))}
   .gal.g1{background-image:url("img/gal-1.jpg")}
   .gal.g2{background-image:url("img/gal-2.jpg")}
-  .gal.g3{background-image:url("img/gal-show.jpg")}
-  .gal.g4{background-image:url("img/gal-4.jpg");background-position:center 20%}
+  .gal.g3{background-image:url("img/gal-white.jpg")}
+  .gal.g4{background-image:url("img/gal-coach.jpg")}
 
   /* GROUPS */
   .groups{background:var(--bg-2)}
@@ -338,7 +318,7 @@
       <div class="gal g1" data-cap="постановка техники на льду"></div>
       <div class="gal g2" data-cap="скольжение и равновесие"></div>
       <div class="gal g3" data-cap="выступления и гала-шоу"></div>
-      <div class="gal g4" data-cap="первый лёд — с удовольствием"></div>
+      <div class="gal g4" data-cap="групповые занятия и первые выступления"></div>
     </div>
     <div class="case-note">Фото — стоковые, заменим кадрами с тренировок школы <span class="ph-tag">заглушка</span></div>
   </div>
